@@ -15,7 +15,7 @@ textestruct init_texte(menustruct* menu, sfFont *font,int size, sfColor color)
 void init_menu(menustruct *menu, textestruct *Press, textestruct *titlemenu, textestruct *AI, textestruct *Duel, textestruct *BR)
 {
     // Chargement du Background
-    menu->texturemenu = sfTexture_createFromFile("wood.jpg", NULL);
+    menu->texturemenu = sfTexture_createFromFile("img/wood.jpg", NULL);
     if (!menu->texturemenu)printf("Texture Error");
     menu->spritemenu = sfSprite_create();
     sfSprite_setTexture(menu->spritemenu, menu->texturemenu, sfTrue);
@@ -24,9 +24,9 @@ void init_menu(menustruct *menu, textestruct *Press, textestruct *titlemenu, tex
     posBG.y = 0;
     sfSprite_setPosition(menu->spritemenu,posBG);
 
-    // Ajout de la police d'écriture
-    menu->titlefont = sfFont_createFromFile("Optimus.ttf");
-    menu->font = sfFont_createFromFile("arial.ttf");
+    // Ajout de la police d'ï¿½criture
+    menu->titlefont = sfFont_createFromFile("fonts/Optimus.ttf");
+    menu->font = sfFont_createFromFile("fonts/arial.ttf");
     if (!menu->font || !menu->titlefont)printf("Font Error");
 
     // Initialisation des textes
