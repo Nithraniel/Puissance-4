@@ -12,7 +12,7 @@ textestruct init_texte(menustruct* menu, sfFont *font,int size, sfColor color)
     return texte;
 }
 
-void init_menu(menustruct *menu, textestruct *Press, textestruct *titlemenu, textestruct *AI, textestruct *Duel, textestruct *BR)
+void init_menu(menustruct *menu, textestruct *Press, textestruct *titlemenu, textestruct *AI, textestruct *Duel, textestruct *BR, menustruct *curseur)
 {
     // Chargement du Background
     menu->texturemenu = sfTexture_createFromFile("img/wood.jpg", NULL);
@@ -24,7 +24,17 @@ void init_menu(menustruct *menu, textestruct *Press, textestruct *titlemenu, tex
     posBG.y = 0;
     sfSprite_setPosition(menu->spritemenu,posBG);
 
-    // Ajout de la police d'�criture
+    // Création du curseur
+    curseur->texturemenu = sfTexture_createFromFile("img/triangle.png", NULL);
+    if (!curseur->texturemenu)printf("Texture Error");
+    curseur->spritemenu = sfSprite_create();
+    sfSprite_setTexture(curseur->spritemenu, curseur->texturemenu, sfTrue);
+    sfVector2f posCurseur;
+    posCurseur.x = 250;
+    posCurseur.y = 305;
+    sfSprite_setPosition(curseur->spritemenu,posCurseur);
+
+    // Ajout de la police d'écriture
     menu->titlefont = sfFont_createFromFile("fonts/Optimus.ttf");
     menu->font = sfFont_createFromFile("fonts/arial.ttf");
     if (!menu->font || !menu->titlefont)printf("Font Error");
@@ -63,7 +73,6 @@ void init_menu(menustruct *menu, textestruct *Press, textestruct *titlemenu, tex
     sfText_setString(Press->objet,"Press start to play");
     sfText_setPosition(Press->objet,posPress);
 
-
     sfText_setString(AI->objet,"P1 VS AI");
     sfText_setPosition(AI->objet,posAI);
 
@@ -72,10 +81,9 @@ void init_menu(menustruct *menu, textestruct *Press, textestruct *titlemenu, tex
 
     sfText_setString(BR->objet,"Battle Royale");
     sfText_setPosition(BR->objet,posBR);
-
 }
 
-void engine_menu(sfRenderWindow* win, menustruct *menu, textestruct *Press, textestruct *titlemenu, textestruct *AI, textestruct *Duel, textestruct *BR, int startgame)
+void engine_menu(sfRenderWindow* win, menustruct *menu, textestruct *Press, textestruct *titlemenu, textestruct *AI, textestruct *Duel, textestruct *BR, int startgame, menustruct *curseur)
 {
     sfRenderWindow_drawSprite(win,menu->spritemenu,NULL);
     sfRenderWindow_drawText(win,titlemenu->objet,NULL);
@@ -84,6 +92,7 @@ void engine_menu(sfRenderWindow* win, menustruct *menu, textestruct *Press, text
         sfRenderWindow_drawText(win,AI->objet,NULL);
         sfRenderWindow_drawText(win,Duel->objet,NULL);
         sfRenderWindow_drawText(win,BR->objet,NULL);
+        sfRenderWindow_drawSprite(win,curseur->spritemenu,NULL);
     }
 }
 
