@@ -1,4 +1,4 @@
-#include "menu.h"
+#include "engine.h"
 
 textestruct init_texte(menustruct* menu, sfFont *font,int size, sfColor color)
 {
@@ -16,7 +16,6 @@ void init_menu(menustruct *menu, textestruct *Press, textestruct *titlemenu, tex
 {
     // Chargement du Background
     menu->texturemenu = sfTexture_createFromFile("img/wood.jpg", NULL);
-    if (!menu->texturemenu)printf("Texture Error");
     menu->spritemenu = sfSprite_create();
     sfSprite_setTexture(menu->spritemenu, menu->texturemenu, sfTrue);
     sfVector2f posBG;
@@ -96,3 +95,24 @@ void engine_menu(sfRenderWindow* win, menustruct *menu, textestruct *Press, text
     }
 }
 
+void init_game(menustruct *game)
+{
+	// Chargement du Background
+	game->texturemenu = sfTexture_createFromFile("img/Nature.jpg", NULL);
+	game->spritemenu = sfSprite_create();
+	sfSprite_setTexture(game->spritemenu, game->texturemenu, sfTrue);
+	sfVector2f posBG;
+	posBG.x = 0;
+	posBG.y = 0;
+	sfSprite_setPosition(game->spritemenu,posBG);
+
+	// Chargement du tableau
+
+
+}
+
+void engine_game(sfRenderWindow* win, menustruct* game, rectanglestruct *rectangle)
+{
+	sfRenderWindow_drawSprite(win,game->spritemenu,NULL);
+
+}

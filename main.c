@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "menu.h"
+#include "engine.h"
+#define l 10
+#define c 10
 
 int main()
 {
@@ -9,9 +11,9 @@ int main()
     sfRenderWindow* window = sfRenderWindow_create(mode, "Puissance 4 Evolved", sfResize | sfClose, NULL);
     sfRenderWindow_setFramerateLimit(window,60);
 
-    int startgame=0,choice=0;
-    int tmp;
+    int startgame=0,choice=0,tmp;
 
+    rectanglestruct tab[l][c];
     menustruct title,curseur;
     textestruct textmenu, titlemenu, AI, Duel, BR;
     init_menu(&title,&textmenu, &titlemenu, &AI, &Duel, &BR,&curseur);
