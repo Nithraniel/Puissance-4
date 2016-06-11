@@ -1,36 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "engine.h"
-#define l 10
-#define c 10
 
 int main()
 {
     // Création de la fenêtre
     sfVideoMode mode = {800, 600, 32};
-    sfRenderWindow* window = sfRenderWindow_create(mode, "Puissance 4 Evolved", sfResize | sfClose, NULL);
+    sfRenderWindow* window = sfRenderWindow_create(mode, "P4 : Royal Rotation", sfResize | sfClose, NULL);
     sfRenderWindow_setFramerateLimit(window,60);
 
-    int startgame=0,choice=0,tmp;
+    int startgame=0,choice=0,tmp=0;
+    menustruct title,curseur,game;
+    textestruct textmenu, titlemenu, Subtitle, AI, Duel, BR;
+    init_menu(&title,&textmenu, &titlemenu, &Subtitle, &AI, &Duel, &BR,&curseur);
 
-    rectanglestruct tab[l][c];
-    menustruct title,curseur;
-    textestruct textmenu, titlemenu, AI, Duel, BR;
-    init_menu(&title,&textmenu, &titlemenu, &AI, &Duel, &BR,&curseur);
+    init_game(&game);
 
     while(sfRenderWindow_isOpen(window))
     {
         sfRenderWindow_clear(window,sfBlack);
 
         tmp=checkKeyboard(window);
-        if(tmp == 5){
-        	startgame = 1;
-        }
-        if(tmp == 6){
-        	startgame = 0;
-        }
+        if(tmp == 5) startgame = 1;
+        if(tmp == 6) startgame = 0;
     	sfVector2f tmpPosCursor = sfSprite_getPosition(curseur.spritemenu);
-        if(tmp == 4 && tmpPosCursor.y <= 360){
+        if(tmp == 4 && tmpPosCursor.y <= 360)
+        {
         	tmpPosCursor.y+= 40;
             sfSprite_setPosition(curseur.spritemenu, tmpPosCursor);
         }
@@ -43,7 +38,7 @@ int main()
         switch(choice)
         {
         case 0:     // Menu
-            engine_menu(window,&title,&textmenu,&titlemenu,&AI,&Duel,&BR,startgame,&curseur);
+            engine_menu(window,&title,&textmenu,&titlemenu,&Subtitle,&AI,&Duel,&BR,startgame,&curseur);
             break;
 
         case 1:     // P1 VS IA

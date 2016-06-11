@@ -1,6 +1,7 @@
 #include "input.h"
 #include <windows.h>
-
+#define lmax 10
+#define cmax 10
 
 typedef struct{
     sfText* objet;
@@ -21,7 +22,7 @@ typedef struct{
 }rectanglestruct;
 
 textestruct init_texte(menustruct* menu, sfFont *font, int size, sfColor color);
-void init_menu(menustruct *menu, textestruct *Press, textestruct *titlemenu, textestruct *AI, textestruct *Duel, textestruct *BR, menustruct *curseur);
-void engine_menu(sfRenderWindow* win, menustruct *menu, textestruct *Press, textestruct *titlemenu, textestruct *AI, textestruct *Duel, textestruct *BR, int startgame, menustruct *curseur);
+void init_menu(menustruct *menu, textestruct *Press, textestruct *titlemenu, textestruct *Subtitle, textestruct *AI, textestruct *Duel, textestruct *BR, menustruct *curseur);
+void engine_menu(sfRenderWindow* win, menustruct *menu, textestruct *Press, textestruct *titlemenu, textestruct *Subtitle, textestruct *AI, textestruct *Duel, textestruct *BR, int startgame, menustruct *curseur);
 void init_game(menustruct *game);
-void engine_game(sfRenderWindow* win, menustruct* game);
+void engine_game(sfRenderWindow* win, menustruct* game, rectanglestruct rectangle);
