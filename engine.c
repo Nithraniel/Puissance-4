@@ -106,11 +106,9 @@ void engine_menu(sfRenderWindow* win, menustruct *menu, textestruct *Press, text
 void init_game(menustruct *game)
 {
 	short int cpt;
-	rectanglestruct** rectangle = malloc(sizeof(int*)*(lmax+1));
-	for(cpt=0;cpt<lmax+1;cpt++)
-	{
-		rectangle = malloc(sizeof(int)*(cmax+1));
-	}
+	rectanglestruct** rectangle = malloc(sizeof(rectanglestruct*)*(lmax+1));
+	for(cpt=0;cpt<lmax+1;cpt++) rectangle[cpt] = malloc(sizeof(rectanglestruct)*(cmax+1));
+
 	// Chargement du Background
 	game->texturemenu = sfTexture_createFromFile("img/Nature.jpg", NULL);
 	game->spritemenu = sfSprite_create();
@@ -130,6 +128,8 @@ void init_game(menustruct *game)
             rectangle[i][j].position.x = 0 + 24*j;
             rectangle[i][j].position.y = 0 + 24*i;
             sfRectangleShape_setPosition(rectangle[i][j].rect,rectangle[i][j].position);
+            sfRectangleShape_setOutlineThickness(rectangle[i][j].rect,2);
+            sfRectangleShape_setOutlineColor(rectangle[i][j].rect,sfRed);
         }
     }
 
